@@ -1,8 +1,6 @@
 
 import java.util.Calendar;
-import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -11,71 +9,36 @@ import javax.swing.JTextField;
  */
 /**
  *
- * @author Estudiantes
+ * @author (╯°□°)╯︵ ┻━┻
  */
-public class Calculos {
+import java.util.Calendar;
+import java.util.Date;
 
-    long codPersona;
-    long valorPasaje;
-    String nombrePer;
-    long saldo;
-    Calendar fecha;
+public class Calculos {
+     private long valorPasaje;
+
+   
 
     public Calculos() {
-        this.codPersona = 0000;
-        this.nombrePer = "         ";
-        this.saldo = 0000;
-        this.valorPasaje = 2300;
-        this.fecha = Calendar.getInstance();
+        this.valorPasaje = 2400;
+        
+    }
+    
+    public long recargar(long saldo, long c) {
+
+        saldo = saldo + c;
+
+        return saldo;
     }
 
-    String NomPer(String a) {
-        this.nombrePer = a;
-        return null;
-    }
+    long Pagar(long saldo ) {
+        if (saldo >= -2400) {
+           saldo = saldo - valorPasaje;
 
-    long CodPer(long b) {
-        this.codPersona = b;
-        return 0;
-    }
-
-    int actualizarFech() {
-        this.fecha = Calendar.getInstance();
-        return 0;
-    }
-
-    long modifiSaldo(long c) {
-        this.saldo = c;
-        return 0;
-    }
-
-    long recargar(long c) {
-
-        this.saldo = this.saldo + c;
-
-        return 0;
-    }
-
-    long Pagar() {
-        if (this.saldo >= -2300) {
-            this.saldo = this.saldo - this.valorPasaje;
-            this.fecha = Calendar.getInstance();
 
         } else {
             JOptionPane.showMessageDialog(null, "Susaldo no es suficiente, por favot recargue ", "Importante", 1);
         }
-        return 0;
+        return saldo;
     }
-
-    boolean validar(long a) {
-        if (this.codPersona == a) {
-
-            return true;
-        } else {
-
-            return false;
-        }
-
-    }
-
 }

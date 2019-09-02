@@ -10,7 +10,7 @@
  */
 public class Main {
      public static void main(String[] args){
-     Calculos mod=new Calculos();
+     Modelo mod=new Modelo();
      Vista vis=new Vista();
      Controlador contr= new Controlador(vis,mod);
      vis.asignaOyente(contr);

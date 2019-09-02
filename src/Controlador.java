@@ -16,9 +16,9 @@ import jdk.nashorn.internal.ir.CatchNode;
 public class Controlador implements ActionListener {
 
     Vista vis = new Vista();
-    Calculos mod = new Calculos();
+    Modelo mod = new Modelo();
 
-    public Controlador(Vista vis, Calculos mod) {
+    public Controlador(Vista vis, Modelo mod) {
         this.vis = vis;
         this.mod = mod;
     }
@@ -26,42 +26,41 @@ public class Controlador implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent evento1) {
         try {
-            if (evento1.getSource() == vis.agregar & mod.validar(Long.parseLong(vis.codigo.getText())) == false) {
+            if (evento1.getSource() == vis.agregar & mod.usuario.validar(Long.parseLong(vis.codigo.getText())) == false) {
 
                 mod.NomPer(vis.nombre.getText());
                 mod.CodPer(Long.parseLong(vis.codigo.getText()));
-                mod.saldo = Long.parseLong(vis.saldo.getText());
+                mod.usuario.setSaldo(Long.parseLong(vis.saldo.getText())) ;
 
-                vis.verDatosReg.setText("Nombre pasajero: " + mod.nombrePer
-                        + "\nNombre pasajero: " + mod.codPersona
-                        + "\nSaldo del  pasajero: " + mod.saldo);
+                vis.verDatosReg.setText("Nombre pasajero: " + mod.usuario.getNombrePer()
+                        + "\nNombre pasajero: " + mod.usuario.getCodPersona()
+                        + "\nSaldo del  pasajero: " + mod.usuario.getSaldo());
                 vis.nombre.setText(null);
                 vis.codigo.setText(null);
                 vis.saldo.setText(null);
             }
 
-            if (evento1.getSource() == vis.consultar & mod.validar(Long.parseLong(vis.codigo.getText())) == true) {
+            if (evento1.getSource() == vis.consultar & mod.usuario.validar(Long.parseLong(vis.codigo.getText())) == true) {
                 vis.nombre.setEnabled(false);
                 vis.agregar.setEnabled(false);
                 vis.codigo.setEnabled(false);
                 vis.recargar.setEnabled(true);
                 vis.pagar.setEnabled(true);
-                vis.nombre.setText(null);
                 vis.saldo.setText(null);
-                vis.verDatosReg.setText("Nombre pasajero: " + mod.nombrePer
-                        + "\nNombre pasajero: " + mod.codPersona
-                        + "\nSaldo actual del  pasajero: " + mod.saldo
-                        + "\nFecha de ultimo pago: " + mod.fecha.getTime().toString());
+                vis.verDatosReg.setText("Nombre pasajero: " + mod.usuario.getNombrePer()
+                        + "\nNombre pasajero: " + mod.usuario.getCodPersona()
+                        + "\nSaldo actual del  pasajero: " + mod.usuario.getSaldo()
+                        + "\nFecha de ultimo pago: " + mod.usuario.getFecha().getTime().toString());
 
             }
             if (evento1.getSource() == vis.recargar) {
                 vis.nombre.setEnabled(true);
                 vis.codigo.setEnabled(true);
                 mod.recargar(Long.parseLong(vis.saldo.getText()));
-                vis.verDatosReg.setText("Nombre pasajero: " + mod.nombrePer
-                        + "\nNombre pasajero: " + mod.codPersona
-                        + "\nSaldo del  pasajero: " + mod.saldo
-                        + "\nFecha de ultimo pago: " + mod.fecha.getTime().toString());
+                vis.verDatosReg.setText("Nombre pasajero: " + mod.usuario.getNombrePer()
+                        + "\nNombre pasajero: " + mod.usuario.getCodPersona()
+                        + "\nSaldo del  pasajero: " + mod.usuario.getSaldo()
+                        + "\nFecha de ultimo pago: " + mod.usuario.getFecha().getTime().toString());
                 vis.recargar.setEnabled(false);
                 vis.pagar.setEnabled(false);
                 vis.nombre.setText(null);
@@ -74,10 +73,10 @@ public class Controlador implements ActionListener {
                 vis.nombre.setEnabled(true);
                 vis.codigo.setEnabled(true);
                 mod.Pagar();
-                vis.verDatosReg.setText("Nombre pasajero: " + mod.nombrePer
-                        + "\nNombre pasajero: " + mod.codPersona
-                        + "\nSaldo del  pasajero: " + mod.saldo
-                        + "\nFecha de pago: " + mod.fecha.getTime().toString());
+                vis.verDatosReg.setText("Nombre pasajero: " + mod.usuario.getNombrePer()
+                        + "\nNombre pasajero: " + mod.usuario.getCodPersona()
+                        + "\nSaldo del  pasajero: " + mod.usuario.getSaldo()
+                        + "\nFecha de pago: " + mod.usuario.getFecha().getTime().toString());
                 vis.recargar.setEnabled(false);
                 vis.pagar.setEnabled(false);
                 vis.nombre.setText(null);
